@@ -2,13 +2,25 @@
 
 ## Examples to understand basic webpack ideas
 
-This example shows us how to introduce a splint point in the code and how to load chunks on demand.
+This example explains how Webpack can chunk repeating modules in one place.
 
-We have 'Load Dynamic Chunk button', when clicked will load the chunk which consists of jQuery and the module, `dynamicStuff.js`.
+Here we have two entries
+-  `main.js`
+-  `other.js`
 
-After webpack builds, we would have two files
+Both depends on the module `agent`.
 
--  bundle.js
--  1.bundle.js
+Instead of including the `agent` in both `main.bundle.js` and `other.bundle.js`, we ask Webpack to extract any module required twice in its own bundle.
 
-`1.bundle.js` is not loaded initially. It gets loaded and computed if only we click the button, 'Load Dynamic Chunk'
+```javascript
+  new CommonsPlugin({
+    'minChunks': 2,
+    'name': 'common'
+  })
+```
+
+And we do this with the help of CommonsChunkPlugin.
+
+And after the build we get `common.bundle.js` along with `main.bundle.js` and `other.bundle.js`.
+
+The `common.bundle.js` also contains the webpack runtime. The other bundles just contains its own code.

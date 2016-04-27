@@ -1,9 +1,12 @@
+const CommonsPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+
 module.exports = {
   entry: {
-    main: './scripts/main.js'
+    main: './scripts/main.js',
+    other: './scripts/other.js'
   },
   output: {
-    filename:'bundle.js',
+    filename:'[name].bundle.js',
   },
   module: {
     loaders: [
@@ -15,5 +18,11 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new CommonsPlugin({
+      minChunks: 2,
+      name: 'common'
+    })
+  ]
 };

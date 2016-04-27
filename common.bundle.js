@@ -17,7 +17,10 @@
 /******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules);
 /******/ 		while(callbacks.length)
 /******/ 			callbacks.shift().call(null, __webpack_require__);
-
+/******/ 		if(moreModules[0]) {
+/******/ 			installedModules[0] = 0;
+/******/ 			return __webpack_require__(0);
+/******/ 		}
 /******/ 	};
 
 /******/ 	// The module cache
@@ -27,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		0:0
+/******/ 		2:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -73,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + ".bundle.js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"main","1":"other"}[chunkId]||chunkId) + ".bundle.js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -86,33 +89,10 @@
 
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _agent = __webpack_require__(1);
-
-	var _agent2 = _interopRequireDefault(_agent);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	document.write('\n This is original' + (0, _agent2.default)()); // SIMPLE DEPENDENCY TREE AGENT -> COMPANY
-
-
-	document.getElementById('load-dynamic-chunk').addEventListener('click', function (e) {
-	  __webpack_require__.e/* nsure */(1, function (require) {
-	    __webpack_require__(3);
-	  });
-	}, false);
-
-/***/ },
+/* 0 */,
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
