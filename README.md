@@ -2,10 +2,13 @@
 
 ## Examples to understand basic webpack ideas
 
-This is `hello-world` for webpack.
+This example shows us how to introduce a splint point in the code and how to load chunks on demand.
 
-Our `entry` is `main` which depends on `agent`, which in turn depends on `company`.
+We have 'Load Dynamic Chunk button', when clicked will load the chunk which consists of jQuery and the module, `dynamicStuff.js`.
 
-And generate an output bundle and save it in `./bundle.js`.
+After webpack builds, we would have two files
 
-We have used a `babel-loader` to transform .js files with ES2015 modules in it.
+-  bundle.js
+-  1.bundle.js
+
+`1.bundle.js` is not loaded initially. It gets loaded and computed if only we click the button, 'Load Dynamic Chunk'
